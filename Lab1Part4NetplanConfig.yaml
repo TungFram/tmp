@@ -1,0 +1,14 @@
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        enp0s9: {}
+        enp0s10: {}
+    bonds:
+        bond007:
+            dhcp4: true
+            interfaces:
+              - enp0s9
+              - enp0s10
+            parameters:
+                mode: balance-tlb

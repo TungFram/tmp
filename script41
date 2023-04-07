@@ -1,0 +1,11 @@
+#!/bin/bash
+
+timestamp=$(date +%F_%T)
+
+cat /proc/net/dev | tail -n 3 | while read line; do
+	interface=`echo $line | awk '{print $1;}' | sed 's/://'`
+	receivePackets=`echo $line | awk '{print $2;}'`
+	transmitPackets=`echo $line | awk '{print $10;}'`
+
+	echo "$timestamp: $interface | RP -- $receivePackets | TP -- $transmitPackets"
+done
